@@ -26,10 +26,9 @@ function Navbar() {
         </div>
       </div>
       <div className="navbar-auth">
-        <button className="btn" onClick={openModal}>
-          Sign in
+        <button className="btn btn-accent" onClick={openModal}>
+          Sign in / Create Account
         </button>
-        <button className="btn btn-accent">Create Account</button>
         <LoginModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       </div>
     </nav>

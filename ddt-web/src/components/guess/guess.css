@@ -1,7 +1,29 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+}
+
+.quote-author {
+  font-size: 1em;
+  font-weight: 300;
+  color: #d3d3d3;
+  margin-bottom: 1em;
+}
+
+.quote-text {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #d3d3d3;
+  margin-bottom: 0.5em;
+}
+
+.quote-card {
+  border-radius: 30px;
+  padding: 20px;
+  margin: 2rem;
+  background: #212121;
+  box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
 }

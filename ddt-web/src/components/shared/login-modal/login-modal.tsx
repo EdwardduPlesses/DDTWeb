@@ -36,7 +36,7 @@ const LoginModal = ({
     >
       <div>
         <form className="form">
-          <p id="heading">Login</p>
+          <p id="heading">Sign in</p>
           <div className="field">
             <svg
               className="input-icon"
