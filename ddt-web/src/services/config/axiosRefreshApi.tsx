@@ -22,7 +22,7 @@ const refreshApiService = axios.create({
 });
 
 const refreshApi = createRefresh({
-  interval: 0.1,
+  interval: 10,
   refreshApiCallback: async ({
     authToken,
     refreshToken,
