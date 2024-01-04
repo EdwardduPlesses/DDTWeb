@@ -66,6 +66,7 @@
 .button1:hover {
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
 .button3 {
@@ -77,12 +78,15 @@
   transition: 0.4s ease-in-out;
   background-color: #252525;
   color: white;
-  cursor: pointer;
 }
 
 .button3:hover {
-  background-color: red;
+  background-color: black;
   color: white;
+  cursor: pointer;
+}
+
+.signup a:hover {
   cursor: pointer;
 }
 
@@ -91,8 +95,4 @@
   font-size: 0.75rem;
   line-height: 1rem;
   color: rgb(0, 0, 0);
-}
-
-.signup a:hover {
-  cursor: pointer;
 }

@@ -1,36 +1,42 @@
-import React from "react";
-import "./login.css";
+import Modal from "react-modal";
+import "./sign-up-modal.css";
 
-interface LoginProps {}
+Modal.setAppElement("#root");
 
-interface LoginState {
-  email: string;
-  password: string;
-}
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "",
+    border: "none",
+    borderRadius: "10px",
+  },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0)",
+  },
+};
 
-class Login extends React.Component<LoginProps, LoginState> {
-  constructor(props: LoginProps) {
-    super(props);
-    this.state = { email: "", password: "" };
-  }
-
-  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    } as Pick<LoginState, keyof LoginState>);
-  };
-
-  handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-
-    console.log(this.state);
-  };
-
-  render() {
-    return (
+const SignUpModal = ({
+  modalIsOpen,
+  closeModal,
+}: {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+}) => {
+  return (
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      contentLabel="Example Modal"
+    >
       <div>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <p id="heading">Login</p>
+        <form className="form">
+          <p id="heading">Sign in</p>
           <div className="field">
             <svg
               className="input-icon"
@@ -47,8 +53,8 @@ class Login extends React.Component<LoginProps, LoginState> {
               className="input-field"
               type="text"
               name="email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
+              // value={this.state.email}
+              // onChange={this.handleInputChange}
             />
           </div>
           <div className="field">
@@ -67,21 +73,23 @@ class Login extends React.Component<LoginProps, LoginState> {
               className="input-field"
               type="password"
               name="password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
+              // value={this.state.password}
+              // onChange={this.handleInputChange}
             />
           </div>
-          <div className="btn">
-            <button className="button1" typeof="submit">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </button>
-            <button className="button2">Sign Up</button>
-          </div>
-          <button className="button3">Forgot Password</button>
+          <button className="button1" typeof="submit">
+            Register
+          </button>
+          <button className="button3" typeof="submit">
+            Sign In
+          </button>
+          <p className="signup">
+            Already have an account? <a onClick={closeModal}>Sign in</a>
+          </p>
         </form>
       </div>
-    );
-  }
-}
+    </Modal>
+  );
+};
 
-export default Login;
+export default SignUpModal;

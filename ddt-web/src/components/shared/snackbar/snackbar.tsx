@@ -8,7 +8,7 @@ function Snackbar(props: SnackbarInterface) {
     case SnackbarType.SUCCESS:
       toast.success(props.message, {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -19,7 +19,7 @@ function Snackbar(props: SnackbarInterface) {
     case SnackbarType.ERROR:
       toast.error(props.message, {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -30,7 +30,7 @@ function Snackbar(props: SnackbarInterface) {
     case SnackbarType.INFO:
       toast.info(props.message, {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -42,7 +42,7 @@ function Snackbar(props: SnackbarInterface) {
     case SnackbarType.WARNING:
       toast.warning(props.message, {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -53,7 +53,7 @@ function Snackbar(props: SnackbarInterface) {
     default:
       toast(props.message, {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
