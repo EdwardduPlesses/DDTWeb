@@ -2,9 +2,10 @@ import { useState } from "react";
 import logo from "../../../assets/dylan.svg";
 import LoginModal from "../login-modal/login-modal";
 import "./navbar.css";
-import { useAuth } from "../utils/use-auth";
+import { useAuth } from "../utils/auth-context/use-auth";
 import { Avatar } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -20,27 +21,29 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div>
-        <a href="/">
+        <Link to="/">
           <img src={logo} alt="logo" className="navbar-logo" />
-        </a>
+        </Link>
         <div className="navbar-links">
           {authUser != null && authUser.user?.DDT_UserRole === "user" && (
-            <a href="/guess" className="navbar-item">
+            <Link to="/guess" className="navbar-item">
               Guess
-            </a>
+            </Link>
           )}
           {authUser != null && authUser.user?.DDT_UserRole === "user" && (
-            <a href="/leaderboard" className="navbar-item">
+            <Link to="/leaderboard" className="navbar-item">
               Leaderboard
-            </a>
+            </Link>
           )}
         </div>
       </div>
       <div className="navbar-auth">
         {authUser != null && authUser.user?.isLoggedIn ? (
-          <Avatar sx={{ bgcolor: blue[400] }}>
-            {authUser.user.userName.charAt(0).toUpperCase()}
-          </Avatar>
+          <Link to="/profile">
+            <Avatar sx={{ bgcolor: blue[400] }} alt="DDT">
+              {authUser.user.userName.charAt(0).toUpperCase()}
+            </Avatar>
+          </Link>
         ) : (
           <button className="btn btn-accent" onClick={openModal}>
             Sign in / Create Account

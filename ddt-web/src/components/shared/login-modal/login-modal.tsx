@@ -93,7 +93,6 @@ const LoginModal = ({
             authState: response.data,
             refreshToken: response.data.refreshToken,
           });
-          window.dispatchEvent(new Event("authChange"));
           window.location.reload();
           handleCloseModal();
           openSnackbar("Logged In", SnackbarType.SUCCESS);

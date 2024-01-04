@@ -2,7 +2,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { AuthProvider } from "react-auth-kit";
-import { AuthProviderStatus } from "./components/shared/utils/auth-context.tsx";
+import { AuthProviderStatus } from "./components/shared/utils/auth-context/auth-context.tsx";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <AuthProvider
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     cookieSecure={window.location.protocol === "https:"}
   >
     <AuthProviderStatus>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </AuthProviderStatus>
   </AuthProvider>
 );
