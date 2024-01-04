@@ -29,7 +29,7 @@ export const AuthProviderStatus = ({
   const login = (userData: DecodedToken) => {
     setClaims(userData.DDT_UserRole);
     setIsLoggedIn(true);
-    setUserName(userData.sub);
+    setUserName(userData.sub[0]);
   };
 
   const logout = () => {
@@ -40,12 +40,7 @@ export const AuthProviderStatus = ({
   };
 
   useEffect(() => {
-    // Initial check for authentication status
     const userData: DecodedToken = decodeToken();
-    console.log(
-      "🚀 ~ file: auth-context.tsx:45 ~ useEffect ~ userData:",
-      userData
-    );
     if (userData.DDT_UserRole !== "") {
       login(userData);
     }

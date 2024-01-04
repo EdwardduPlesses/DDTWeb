@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export interface DecodedToken {
   DDT_UserRole: string;
-  sub: string;
+  sub: string[];
 }
 
 export const decodeToken = (): DecodedToken => {
@@ -15,5 +15,5 @@ export const decodeToken = (): DecodedToken => {
       console.error("Error decoding token", e);
     }
   }
-  return { DDT_UserRole: "", sub: "" };
+  return { DDT_UserRole: "", sub: [""] };
 };

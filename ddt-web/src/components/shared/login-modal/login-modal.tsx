@@ -92,6 +92,7 @@ const LoginModal = ({
             tokenType: "Bearer",
             authState: response.data,
             refreshToken: response.data.refreshToken,
+            refreshTokenExpireIn: 60,
           });
           window.location.reload();
           handleCloseModal();
