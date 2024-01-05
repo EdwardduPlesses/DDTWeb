@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const authUser = useAuth();
+  const userName = authUser.user.userName.charAt(0).toUpperCase();
 
   function openModal() {
     setIsOpen(true);
@@ -18,6 +19,10 @@ function Navbar() {
   function closeModal() {
     setIsOpen(false);
   }
+  const auth =
+    authUser != null &&
+    (authUser.user?.DDT_UserRole === "user" ||
+      authUser.user?.DDT_UserRole === "admin");
   return (
     <nav className="navbar">
       <div>
@@ -25,12 +30,12 @@ function Navbar() {
           <img src={logo} alt="logo" className="navbar-logo" />
         </Link>
         <div className="navbar-links">
-          {authUser != null && authUser.user?.DDT_UserRole === "user" && (
+          {auth && (
             <Link to="/guess" className="navbar-item">
               Guess
             </Link>
           )}
-          {authUser != null && authUser.user?.DDT_UserRole === "user" && (
+          {auth && (
             <Link to="/leaderboard" className="navbar-item">
               Leaderboard
             </Link>
@@ -41,7 +46,7 @@ function Navbar() {
         {authUser != null && authUser.user?.isLoggedIn ? (
           <Link to="/profile">
             <Avatar sx={{ bgcolor: blue[400] }} alt="DDT">
-              {authUser.user.userName.charAt(0).toUpperCase()}
+              {userName}
             </Avatar>
           </Link>
         ) : (

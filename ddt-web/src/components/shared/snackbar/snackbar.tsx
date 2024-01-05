@@ -4,10 +4,11 @@ import SnackbarInterface from "./models/snackbar-interface";
 import "react-toastify/dist/ReactToastify.css";
 
 function Snackbar(props: SnackbarInterface) {
+  const position = "bottom-right";
   switch (props.type) {
     case SnackbarType.SUCCESS:
       toast.success(props.message, {
-        position: "bottom-center",
+        position: position,
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -18,7 +19,7 @@ function Snackbar(props: SnackbarInterface) {
       break;
     case SnackbarType.ERROR:
       toast.error(props.message, {
-        position: "bottom-center",
+        position: position,
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -29,7 +30,7 @@ function Snackbar(props: SnackbarInterface) {
       break;
     case SnackbarType.INFO:
       toast.info(props.message, {
-        position: "bottom-center",
+        position: position,
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -41,7 +42,7 @@ function Snackbar(props: SnackbarInterface) {
       break;
     case SnackbarType.WARNING:
       toast.warning(props.message, {
-        position: "bottom-center",
+        position: position,
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -52,7 +53,7 @@ function Snackbar(props: SnackbarInterface) {
       break;
     default:
       toast(props.message, {
-        position: "bottom-center",
+        position: position,
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,

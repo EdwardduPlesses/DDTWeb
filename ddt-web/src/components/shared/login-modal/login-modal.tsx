@@ -96,12 +96,10 @@ const LoginModal = ({
           });
           window.location.reload();
           handleCloseModal();
-          openSnackbar("Logged In", SnackbarType.SUCCESS);
         }
       })
       .catch((error) => {
-        console.log(error);
-        openSnackbar("Email or Password Incorrect", SnackbarType.ERROR);
+        openSnackbar(error.message, SnackbarType.ERROR);
       });
   }
 

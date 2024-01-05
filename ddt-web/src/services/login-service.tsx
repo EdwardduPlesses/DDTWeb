@@ -27,33 +27,29 @@ LoginService.login = async (
 
     return response;
   } catch (error) {
-    // Here we catch the error and return a rejected promise
     if (error && (error as AxiosError).response) {
-      // If the error is from Axios and has a response, we can use it
-      return Promise.reject((error as AxiosError).response);
+      const errorResponse = new Error("Invalid email or password");
+
+      return Promise.reject(errorResponse);
     }
-    // If it's an error without a response, we can reject with a custom message or object
     return Promise.reject(new Error("An error occurred during login"));
   }
 };
 
 LoginService.refreshToken = async (): Promise<AxiosResponse> => {
   try {
-    // const loginModel: LoginModel = { email: email, password: password };
-
     const response = await LoginService.post<_AuthInterface>(
       "/Account/RefreshToken"
     );
 
     return response;
   } catch (error) {
-    // Here we catch the error and return a rejected promise
     if (error && (error as AxiosError).response) {
-      // If the error is from Axios and has a response, we can use it
-      return Promise.reject((error as AxiosError).response);
+      const errorResponse = new Error("Invalid bearer or refresh token");
+
+      return Promise.reject(errorResponse);
     }
-    // If it's an error without a response, we can reject with a custom message or object
-    return Promise.reject(new Error("An error occurred during login"));
+    return Promise.reject(new Error("An error occurred during refresh"));
   }
 };
 export default LoginService;
