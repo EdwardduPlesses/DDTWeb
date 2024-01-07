@@ -8,6 +8,7 @@
   place-items: center;
   overflow: hidden;
   border-radius: 20px;
+  z-index: -1;
 }
 
 .card-home h2 {

@@ -6,6 +6,8 @@ import LoginService from "../../../services/login-service";
 import { SnackbarType } from "../snackbar/models/snackbar-interface";
 import { useSnackbar } from "../snackbar/snackbar-context";
 import { useSignIn } from "react-auth-kit";
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 Modal.setAppElement("#root");
 
@@ -103,6 +105,13 @@ const LoginModal = ({
       });
   }
 
+  function handleForgotPassword(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    event.preventDefault();
+    openSnackbar("Sorry, not implemented yet :(", SnackbarType.INFO);
+  }
+
   return (
     <div>
       {
@@ -113,6 +122,19 @@ const LoginModal = ({
           contentLabel="Example Modal"
         >
           <div>
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              onClick={handleCloseModal}
+              sx={{
+                "&:hover": { backgroundColor: "transparent" },
+                top: 25,
+                right: 30,
+                position: "absolute",
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
             <form className="form">
               <p id="heading">Sign in</p>
               <div className="field">
@@ -158,7 +180,9 @@ const LoginModal = ({
               <button className="button1" onClick={handelLogin}>
                 Sign In
               </button>
-              <button className="button3">Forgot Password</button>
+              <button className="button3" onClick={handleForgotPassword}>
+                Forgot Password
+              </button>
 
               <p className="signup">
                 Don't have an account? <a onClick={openSignUpModal}>Sign up</a>

@@ -1,5 +1,11 @@
 import Modal from "react-modal";
 import "./sign-up-modal.css";
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useState } from "react";
+import { useSnackbar } from "../snackbar/snackbar-context";
+import { SnackbarType } from "../snackbar/models/snackbar-interface";
+import LoginService from "../../../services/login-service";
 
 Modal.setAppElement("#root");
 
@@ -27,6 +33,59 @@ const SignUpModal = ({
   modalIsOpen: boolean;
   closeModal: () => void;
 }) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const validateEmail = (email: string) => emailRegex.test(email);
+  const validatePassword = (password: string) => password.length >= 6;
+  const { openSnackbar } = useSnackbar();
+
+  const handleCloseModal = () => {
+    setEmail("");
+    setPassword("");
+    closeModal();
+  };
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  }
+
+  function handleSignUp(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    event.preventDefault();
+
+    if (!validateEmail(email)) {
+      openSnackbar("Please enter a valid email address", SnackbarType.ERROR);
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      openSnackbar(
+        "Password must be at least 6 characters long",
+        SnackbarType.ERROR
+      );
+      return;
+    }
+
+    LoginService.register(email, password)
+      .then((response) => {
+        if (response.status === 200) {
+          openSnackbar("Registration successful", SnackbarType.SUCCESS);
+          handleCloseModal();
+        }
+      })
+      .catch((error) => {
+        openSnackbar(error.message, SnackbarType.ERROR);
+      });
+  }
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -35,8 +94,21 @@ const SignUpModal = ({
       contentLabel="Example Modal"
     >
       <div>
+        <IconButton
+          aria-label="close"
+          color="inherit"
+          onClick={handleCloseModal}
+          sx={{
+            "&:hover": { backgroundColor: "transparent" },
+            top: 25,
+            right: 30,
+            position: "absolute",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
         <form className="form">
-          <p id="heading">Sign in</p>
+          <p id="heading">Sign up</p>
           <div className="field">
             <svg
               className="input-icon"
@@ -53,8 +125,8 @@ const SignUpModal = ({
               className="input-field"
               type="text"
               name="email"
-              // value={this.state.email}
-              // onChange={this.handleInputChange}
+              value={email}
+              onChange={handleInputChange}
             />
           </div>
           <div className="field">
@@ -73,18 +145,19 @@ const SignUpModal = ({
               className="input-field"
               type="password"
               name="password"
-              // value={this.state.password}
-              // onChange={this.handleInputChange}
+              value={password}
+              onChange={handleInputChange}
             />
           </div>
-          <button className="button1" typeof="submit">
+          <button className="button1" onClick={handleSignUp}>
             Register
           </button>
-          <button className="button3" typeof="submit">
+          <button className="button3" onClick={handleCloseModal}>
             Sign In
           </button>
           <p className="signup">
-            Already have an account? <a onClick={closeModal}>Sign in</a>
+            Please don't use your real password. Do you really trust me that
+            much?
           </p>
         </form>
       </div>

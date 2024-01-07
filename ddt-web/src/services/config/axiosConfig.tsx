@@ -30,7 +30,7 @@ const errorHandler = (error: AxiosError) => {
     );
   }
   return Promise.reject(
-    new Error("An error occurred during login Leaderboard Fetch")
+    new Error("An error occurred during Leaderboard Fetch")
   );
 };
 
