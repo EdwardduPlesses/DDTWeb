@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 import { SnackbarType } from "./models/snackbar-interface";
 
 const SnackbarContext = createContext({
-  openSnackbar: (message: string, type: SnackbarType) => {},
+  openSnackbar: (_message: string, _type: SnackbarType) => {},
 });
 
 export function useSnackbar() {
